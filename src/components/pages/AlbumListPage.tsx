@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Album } from '../../stores/albums';
 import { ScreenHelmet, ScreenComponentProps } from 'karrotframe';
 import { observer } from 'mobx-react';
+import { Album } from '../../types/album.type';
 import useStore from '../../useStore';
 import styled from '@emotion/styled';
 
@@ -19,7 +19,7 @@ const initSortBy = {
 
 const AlbumListPage: React.FC<ScreenComponentProps> = observer(() => {
   const { albums: { data } } = useStore();
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<Album[]>([]);
   const [sortBy, setSortBy] = useState<SortBy>(initSortBy);
 
   useEffect(() => {

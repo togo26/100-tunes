@@ -1,5 +1,9 @@
-import AlbumStore from './stores/albums';
+import AlbumStore, { Albums } from './stores/albums';
 
-const useStore = () => ({ albums: AlbumStore });
+interface useStore {
+  albums: Albums
+}
+
+const useStore = (): useStore => ({ albums: AlbumStore });
 
 export default useStore;
