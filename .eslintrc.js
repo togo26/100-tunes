@@ -6,15 +6,20 @@ module.exports = {
     jest: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 12,
     sourceType: 'module',
+    parser: '@typescript-eslint/parser',
   },
-  plugins: ['react'],
+  plugins: ['react', '@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   rules: {
     'comma-dangle': ['warn', 'always-multiline'],
     'arrow-parens': ['warn', 'as-needed'],
@@ -31,5 +36,10 @@ module.exports = {
       },
     ],
     'space-before-blocks': ['warn', 'always'],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
