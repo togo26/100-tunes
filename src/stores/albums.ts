@@ -2,43 +2,48 @@ import { configure, makeAutoObservable, runInAction } from 'mobx';
 import { Album } from '../types/album.type';
 import * as api from '../api';
 
-export interface Albums {
-  data: Album[];
-  state: string;
-  error: string | null;
-  fetchAlbums: () => void;
-}
-
 configure({ enforceActions: 'observed' });
 
-class AlbumStore implements Albums {
-  data = [];
-  state = 'pending';
-  error = null;
+class AlbumStore {
+  private _list: Album[];
+  private _state: string;
+  private _error: string | null;
 
   constructor() {
     makeAutoObservable(this);
+    this._list = [];
+    this._state = 'pending';
+    this._error = null;
     this.fetchAlbums = this.fetchAlbums.bind(this);
+    this.findTargetAlbum = this.findTargetAlbum.bind(this);
   }
 
-  async fetchAlbums() {
-    this.data = [];
-    this.state = 'pending';
-    this.error = null;
+  get getAlbumList() {
+    return this._list;
+  }
+
+  findTargetAlbum(targetId: string) {
+    return this._list.find(({ id }) => targetId === id);
+  }
+
+  async fetchAlbums(): Promise<void> {
+    this._list = [];
+    this._state = 'pending';
+    this._error = null;
     try {
       const result = await api.fetchAlbums();
       runInAction(() => {
-        this.data = result;
+        this._list = result;
       });
     } catch (error) {
       console.error(error);
       runInAction(() => {
-        this.state = 'error';
-        this.error = error;
+        this._state = 'error';
+        this._error = error;
       });
     } finally {
       runInAction(() => {
-        this.state = 'done';
+        this._state = 'done';
       });
     }
   }

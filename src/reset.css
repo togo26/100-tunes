@@ -35,4 +35,5 @@ body::-webkit-scrollbar {
 
 html, body, #root {
   height: 100%;
+  background-color: #000;
 }
