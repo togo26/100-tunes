@@ -1,13 +1,16 @@
 import React, { memo } from 'react';
-import { Album } from '../../types/album.type';
 import styled from '@emotion/styled';
+
+import { Album } from '../../types/album.type';
+
 import AlbumCard from './AlbumCard';
 
 interface AlbumListProps {
   list: Album[];
 }
 
-const AlbumList: React.FC<AlbumListProps> = ({ list }: AlbumListProps) => {
+const AlbumList: React.FC<AlbumListProps> =
+  ({ list }: AlbumListProps) => {
   return (
     <Wrapper>
       {

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ScreenComponentProps } from 'karrotframe';
 import { observer } from 'mobx-react';
+import styled from '@emotion/styled';
+
 import { Album } from '../../types/album.type';
 import useStore from '../../useStore';
-import styled from '@emotion/styled';
+
 import { AlbumList, AlbumFilterControls } from '../molecules';
 
 interface SortBy {
@@ -19,7 +21,7 @@ const initSortBy = {
 };
 
 const AlbumListPage: React.FC<ScreenComponentProps> = () => {
-  const { albums: { getAlbumList: albumList } } = useStore();
+  const { albums: { albumList } } = useStore();
   const [list, setList] = useState<Album[]>([]);
   const [sortBy, setSortBy] = useState<SortBy>(initSortBy);
 

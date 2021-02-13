@@ -1,12 +1,14 @@
 import React from 'react';
-import { Album } from '../../types/album.type';
 import styled from '@emotion/styled';
+
+import { Album } from '../../types/album.type';
 
 interface AlbumDetailProps {
   album: Album;
 }
 
-const AlbumDetail: React.FC<AlbumDetailProps> = ({ album }: AlbumDetailProps) => {
+const AlbumDetail: React.FC<AlbumDetailProps> =
+  ({ album }: AlbumDetailProps) => {
   const {
     ranking,
     imageUrl,
@@ -21,7 +23,7 @@ const AlbumDetail: React.FC<AlbumDetailProps> = ({ album }: AlbumDetailProps) =>
       <Ranking>{ranking}</Ranking>
       <AlbumImage src={imageUrl.large} alt={name} draggable={false} />
       <Category>{category}</Category>
-      <AlbumName>{name}</AlbumName>
+      <Name>{name}</Name>
       <Artist>{artist}</Artist>
       <ReleaseDate>{releaseDate.label}</ReleaseDate>
       <BackgroundImage src={imageUrl.large} />
@@ -40,16 +42,6 @@ const Wrapper = styled.div`
   text-align: center;
   background-color: #000;
   color: #fff;
-`;
-
-const BackgroundImage = styled.img`
-  position: fixed;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  opacity: 0.6;
-  filter: blur(150px);
-  transform: translateX(-50%);
 `;
 
 const Ranking = styled.p`
@@ -76,7 +68,7 @@ const Category = styled.p`
   font-weight: 700;
 `;
 
-const AlbumName = styled.h1`
+const Name = styled.h1`
   margin-bottom: 8px;
   font-size: 32px;
   width: 320px;
@@ -91,6 +83,16 @@ const Artist = styled.p`
 const ReleaseDate = styled.p`
   margin-bottom: 18px;
   color: gray;
+`;
+
+const BackgroundImage = styled.img`
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  opacity: 0.6;
+  filter: blur(150px);
+  transform: translateX(-50%);
 `;
 
 export default AlbumDetail;
