@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'karrotframe';
-import { Album } from '../../types/album.type';
 import styled from '@emotion/styled';
+
+import { Album } from '../../types/album.type';
 
 interface AlbumCardProps {
   album: Album;
 }
 
-const AlbumCard: React.FC<AlbumCardProps> = ({ album }: AlbumCardProps) => {
+const AlbumCard: React.FC<AlbumCardProps> =
+  ({ album }: AlbumCardProps) => {
   const { id, imageUrl, name, ranking } = album;
+
   return (
     <Link to={`/albums/${id}`}>
       <Wrapper>

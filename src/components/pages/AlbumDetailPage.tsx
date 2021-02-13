@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ScreenComponentProps, ScreenHelmet, useParams } from 'karrotframe';
 import { observer } from 'mobx-react';
-import useStore from '../../useStore';
+
 import { Album } from '../../types/album.type';
+import useStore from '../../useStore';
+
 import { AlbumDetail } from '../molecules';
 
 interface Params {
-  id: string;
+  id: string | undefined;
 }
 
 const AlbumDetailPage: React.FC<ScreenComponentProps> = () => {

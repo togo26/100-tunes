@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Navigator, Screen } from 'karrotframe';
-import { AlbumListPage, AlbumDetailPage } from './components/pages';
 import useStore from './useStore';
+
+import { AlbumListPage, AlbumDetailPage } from './components/pages';
 
 const App: React.FC = () => {
   const { albums: { fetchAlbums } } = useStore();

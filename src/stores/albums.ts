@@ -10,19 +10,19 @@ class AlbumStore {
   private _error: string | null;
 
   constructor() {
-    makeAutoObservable(this);
     this._list = [];
     this._state = 'pending';
     this._error = null;
     this.fetchAlbums = this.fetchAlbums.bind(this);
     this.findTargetAlbum = this.findTargetAlbum.bind(this);
+    makeAutoObservable(this);
   }
 
-  get getAlbumList() {
+  get albumList(): Album[] {
     return this._list;
   }
 
-  findTargetAlbum(targetId: string) {
+  findTargetAlbum(targetId: string): Album | undefined {
     return this._list.find(({ id }) => targetId === id);
   }
 

@@ -4,12 +4,15 @@ import styled from '@emotion/styled';
 interface ButtonProps {
   onClick(ev: React.MouseEvent<HTMLButtonElement>): void;
   children?: React.ReactNode | string;
-  id?: string;
+  id?: string | undefined;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children, id }: ButtonProps) => {
+const Button: React.FC<ButtonProps> =
+  ({ onClick, children, id }: ButtonProps) => {
   return (
-    <StyledButton id={id} onClick={onClick}>{children || 'Button'}</StyledButton>
+    <StyledButton id={id} onClick={onClick}>
+      {children || 'Button'}
+    </StyledButton>
   );
 };
 
