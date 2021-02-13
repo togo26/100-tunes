@@ -1,6 +1,6 @@
 import { Album } from './types/album.type';
 
-interface respondedAlbum {
+interface Response {
   id: { attributes: { 'im:id': string } };
   category: { attributes: { term: string }};
   'im:name': { label: string };
@@ -17,8 +17,10 @@ interface respondedAlbum {
   ];
 }
 
-const normalizeAlbums = (list: respondedAlbum[]): Album[] => {
-  return list.map((album: respondedAlbum, i: number) => ({
+const API_URL = 'https://itunes.apple.com/us/rss/topalbums/limit=100/json';
+
+const normalizeAlbums = (list: Response[]): Album[] => {
+  return list.map((album: Response, i: number) => ({
     ranking: i + 1,
     id: album.id.attributes['im:id'],
     name: album['im:name'].label,
@@ -38,7 +40,7 @@ const normalizeAlbums = (list: respondedAlbum[]): Album[] => {
 };
 
 export const fetchAlbums = async (): Promise<[]> => {
-  const result = await fetch('https://itunes.apple.com/us/rss/topalbums/limit=100/json');
+  const result = await fetch(API_URL);
   const { feed: { entry } } = await result.json();
   return normalizeAlbums ? normalizeAlbums(entry) : entry;
 };

@@ -17,23 +17,23 @@ const initSortBy = {
   releaseDate: 'desc',
 };
 
-const AlbumListPage: React.FC<ScreenComponentProps> = observer(() => {
-  const { albums: { data } } = useStore();
+const AlbumListPage: React.FC<ScreenComponentProps> = () => {
+  const { albums: { getAlbumList: albumList } } = useStore();
   const [list, setList] = useState<Album[]>([]);
   const [sortBy, setSortBy] = useState<SortBy>(initSortBy);
 
   useEffect(() => {
-    if (!data.length) return;
+    if (!albumList.length) return;
     initializeDisplayList();
-  }, [data]);
+  }, [albumList]);
 
   const initializeDisplayList = () => {
-    setList(data);
+    setList(albumList);
     setSortBy(prevSortBy => ({ ...prevSortBy, ranking: 'asc' }));
   };
 
-  const handleSortList = (ev: any) => {
-    const name = ev.target.id;
+  const handleSortList = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const name = (ev.target as HTMLButtonElement).id;
     const isAscendingOrder = sortBy[name] === 'asc';
 
     setSortBy(initSortBy);
@@ -107,7 +107,7 @@ const AlbumListPage: React.FC<ScreenComponentProps> = observer(() => {
       <ContainerGradient />
     </Container>
   );
-});
+};
 
 const Container = styled.div`
   position: relative;
@@ -181,6 +181,7 @@ const AlbumRanking = styled.h1`
   right: 22px;
   top: 14px;
   font-size: 52px;
+  text-decoration: underline;
 `;
 
 const Gradient = styled.div`
@@ -219,4 +220,4 @@ const AlbumShadow = styled.img`
   opacity: 0.4;
 `;
 
-export default AlbumListPage;
+export default observer(AlbumListPage);
