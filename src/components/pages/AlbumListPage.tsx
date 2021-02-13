@@ -66,11 +66,8 @@ const AlbumListPage: React.FC<ScreenComponentProps> = () => {
               currentValue = current.ranking;
           }
 
-          if (isAscendingOrder) {
-            if (prevValue > currentValue) return -1;
-          } else {
-            if (prevValue < currentValue) return -1;
-          }
+          if (isAscendingOrder && prevValue > currentValue) return -1;
+          else if (prevValue < currentValue) return -1;
           return 1;
         });
       return newList;
