@@ -9,7 +9,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchAlbums();
-  });
+  }, []);
 
   return (
     <Navigator theme='Cupertino'>
