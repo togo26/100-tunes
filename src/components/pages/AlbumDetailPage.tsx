@@ -5,13 +5,17 @@ import useStore from '../../useStore';
 import { Album } from '../../types/album.type';
 import { AlbumDetail } from '../molecules';
 
+interface Params {
+  id: string;
+}
+
 const AlbumDetailPage: React.FC<ScreenComponentProps> = () => {
-  const params: any = useParams();
+  const params = useParams<Params>();
   const { albums: { findTargetAlbum } } = useStore();
   const [album, setAlbum] = useState<Album>();
 
   useEffect(() => {
-    if (!params.id) return;
+    if (!params?.id) return;
     const targetAlbum = findTargetAlbum(params.id);
     setAlbum(targetAlbum);
   }, []);

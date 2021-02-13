@@ -34,7 +34,7 @@ const AlbumListPage: React.FC<ScreenComponentProps> = () => {
   };
 
   const handleSortList = (ev: React.MouseEvent<HTMLButtonElement>) => {
-    const name = (ev.target as HTMLButtonElement).id;
+    const name = ev.currentTarget.id;
     const isAscendingOrder = sortBy[name] === 'asc';
 
     setSortBy(initSortBy);
