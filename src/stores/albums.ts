@@ -18,12 +18,12 @@ class AlbumStore {
     makeAutoObservable(this);
   }
 
-  get albumList(): Album[] {
-    return this._list;
-  }
-
   findTargetAlbum(targetId: string): Album | undefined {
     return this._list.find(({ id }) => targetId === id);
+  }
+
+  get albumList(): Album[] {
+    return this._list;
   }
 
   async fetchAlbums(): Promise<void> {
@@ -39,7 +39,7 @@ class AlbumStore {
       console.error(error);
       runInAction(() => {
         this._state = 'error';
-        this._error = error;
+        this._error = error.message;
       });
     } finally {
       runInAction(() => {
