@@ -46,5 +46,3 @@ html, body, #root {
 export const GlobalStyle: React.FC = () => {
   return (<Global styles={styles} />);
 };
-
-// export default GlobalStyle;
